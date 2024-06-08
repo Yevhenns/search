@@ -7,6 +7,29 @@
   flex-direction: column;
   gap: 10px;
 
+  .inputLayout {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 6px;
+
+    .inputWrapper {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    input {
+      color: white;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      width: 120px;
+    }
+  }
+
   :after {
     position: absolute;
     content: '';

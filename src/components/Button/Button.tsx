@@ -7,6 +7,7 @@ export type ButtonProps = {
   type?: 'button' | 'submit';
   iconButton?: boolean;
   iconId?: Icons;
+  isActive?: boolean;
 } & HTMLProps<HTMLButtonElement>;
 
 export const Button = ({
@@ -15,15 +16,20 @@ export const Button = ({
   onClick,
   iconId,
   iconButton = false,
+  disabled = false,
+  isActive = false,
   ...props
 }: ButtonProps) => {
   return (
     <button
-      className={[css.button, iconButton ? css.iconButton : css.withText].join(
-        ' '
-      )}
+      className={[
+        css.button,
+        iconButton ? css.iconButton : css.withText,
+        isActive && css.active,
+      ].join(' ')}
       type={type === 'button' ? 'button' : 'submit'}
       onClick={onClick}
+      disabled={disabled}
       {...props}
     >
       {iconId && <Icon iconId={iconId} />}

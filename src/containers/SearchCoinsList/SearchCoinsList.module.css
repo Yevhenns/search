@@ -7,14 +7,15 @@
     align-items: center;
     gap: 10px;
     border-radius: 5px;
-    padding: 5px;
-
-    span {
-      width: 100%;
-    }
+    padding: 6px;
+    transition: background-color 250ms linear;
 
     &:hover {
       background-color: #5b5858;
+    }
+
+    span {
+      width: 100%;
     }
   }
 }

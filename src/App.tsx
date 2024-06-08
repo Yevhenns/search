@@ -85,7 +85,11 @@ function App() {
 
   return (
     <div className={css.layout}>
-      <Button onClick={handleSearchCoins} label="Search" />
+      <Button
+        onClick={handleSearchCoins}
+        label="Search"
+        isActive={isMenuShown}
+      />
       {isMenuShown && (
         <div className={css.wrapper} ref={menuRef}>
           <SearchCoinsHeader
@@ -94,6 +98,7 @@ function App() {
             inputData={inputData}
             handleChange={handleChange}
             deleteValue={deleteValue}
+            isAllCoinsShown={isAllCoinsShown}
           />
           <SearchCoinsList
             filteredCoins={filteredCoins}
