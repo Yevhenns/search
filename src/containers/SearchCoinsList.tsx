@@ -1,5 +1,5 @@
-import { Coins, Coin } from '../../App';
-import { Button } from '../../components/Button/Button';
+import { Coins, Coin } from '../App';
+import { Button } from '../components/Components';
 import css from './SearchCoinsList.module.css';
 
 export type SearchCoinsListProps = {

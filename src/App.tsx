@@ -1,9 +1,8 @@
 import { SetStateAction, useEffect, useRef, useState } from 'react';
 import { useGetCoins } from './hooks/useGetCoins';
-import { Button } from './components/Button/Button';
-import { SearchCoinsList } from './containers/SearchCoinsList/SearchCoinsList';
+import { Button, Icon } from './components/Components';
+import { SearchCoinsList } from './containers/SearchCoinsList';
 import css from './App.module.css';
-import { Icon } from './components/Icon/Icon';
 
 export type Coin = string;
 export type Coins = Coin[];

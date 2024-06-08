@@ -1,6 +1,5 @@
 import { HTMLProps } from 'react';
-import { Icon, Icons } from '../Icon/Icon';
-import css from './Button.module.css';
+import css from './Components.module.css';
 
 export type ButtonProps = {
   label?: string;
@@ -10,7 +9,7 @@ export type ButtonProps = {
   isActive?: boolean;
 } & HTMLProps<HTMLButtonElement>;
 
-export const Button = ({
+const Button = ({
   type = 'button',
   label,
   onClick,
@@ -37,3 +36,23 @@ export const Button = ({
     </button>
   );
 };
+
+export type Icons =
+  | 'favorite-filled'
+  | 'favorite-outlined'
+  | 'search'
+  | 'xmark';
+
+export type IconProps = {
+  iconId: Icons;
+};
+
+const Icon = ({ iconId }: IconProps) => {
+  return (
+    <svg width={20} height={20} fill="white">
+      <use href={`/icons/sprite.svg#${iconId}`} />
+    </svg>
+  );
+};
+
+export { Button, Icon };
