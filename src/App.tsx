@@ -1,9 +1,9 @@
 import { SetStateAction, useEffect, useRef, useState } from 'react';
 import { useGetCoins } from './hooks/useGetCoins';
 import { Button } from './components/Button/Button';
-import { SearchCoinsHeader } from './containers/SearchCoinsHeader/SearchCoinsHeader';
 import { SearchCoinsList } from './containers/SearchCoinsList/SearchCoinsList';
 import css from './App.module.css';
+import { Icon } from './components/Icon/Icon';
 
 export type Coin = string;
 export type Coins = Coin[];
@@ -92,14 +92,37 @@ function App() {
       />
       {isMenuShown && (
         <div className={css.wrapper} ref={menuRef}>
-          <SearchCoinsHeader
-            setAllCoinsList={setAllCoinsList}
-            setFavoriteCoinsList={setFavoriteCoinsList}
-            inputData={inputData}
-            handleChange={handleChange}
-            deleteValue={deleteValue}
-            isAllCoinsShown={isAllCoinsShown}
-          />
+          <div className={css.header}>
+            <div className={css.inputLayout}>
+              <div className={css.inputWrapper}>
+                <Icon iconId="search" />
+                <input
+                  onChange={e => handleChange(e)}
+                  value={inputData}
+                  name="search"
+                  placeholder="Search..."
+                />
+              </div>
+              {inputData.length > 0 && (
+                <Button onClick={deleteValue} iconId="xmark" iconButton />
+              )}
+            </div>
+            <div className={css.buttonSet}>
+              <Button
+                iconId="favorite-filled"
+                label="Favorites"
+                onClick={setFavoriteCoinsList}
+                isActive={!isAllCoinsShown}
+                disabled={!isAllCoinsShown}
+              />
+              <Button
+                label="All coins"
+                onClick={setAllCoinsList}
+                isActive={isAllCoinsShown}
+                disabled={isAllCoinsShown}
+              />
+            </div>
+          </div>
           <SearchCoinsList
             filteredCoins={filteredCoins}
             filteredFavoriteCoins={filteredFavoriteCoins}
