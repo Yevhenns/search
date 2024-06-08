@@ -3,4 +3,9 @@
   top: 0;
   background-color: #242424;
   width: 100%;
+
+  .buttonSet {
+    display: flex;
+    justify-content: space-between;
+  }
 }

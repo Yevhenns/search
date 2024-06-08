@@ -1,6 +1,7 @@
 import { HTMLProps, SetStateAction } from 'react';
 import { Icon } from '../Icon/Icon';
 import { Icons } from '../Icon/icons';
+import { Button } from '../Button';
 import css from './input.module.css';
 
 export type InputProps = {
@@ -19,12 +20,12 @@ export const Input = ({
 }: InputProps) => {
   return (
     <div className={css.layout}>
-      {iconId && <Icon iconId={iconId} />}
-      <input {...props} onChange={e => handleChange(e)} value={inputData} />
+      <div className={css.inputWrapper}>
+        {iconId && <Icon iconId={iconId} />}
+        <input {...props} onChange={e => handleChange(e)} value={inputData} />
+      </div>
       {inputData.length > 0 && (
-        <button onClick={deleteValue}>
-          <Icon iconId="xmark" />
-        </button>
+        <Button onClick={deleteValue} iconId="xmark" iconButton />
       )}
     </div>
   );

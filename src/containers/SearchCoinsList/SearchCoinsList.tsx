@@ -38,14 +38,16 @@ export const SearchCoinsList = ({
       {isAllCoinsShown
         ? filteredCoins.map(filteredCoin => {
             return (
-              <div key={filteredCoin}>
+              <div key={filteredCoin} className={css.item}>
                 {filteredFavoriteCoins.includes(filteredCoin) ? (
                   <Button
+                    iconButton
                     iconId="favorite-filled"
                     onClick={() => removeFromFavoriteCoins(filteredCoin)}
                   />
                 ) : (
                   <Button
+                    iconButton
                     iconId="favorite-outlined"
                     onClick={() => addToFavoriteCoins(filteredCoin)}
                   />
@@ -56,8 +58,9 @@ export const SearchCoinsList = ({
           })
         : filteredFavoriteCoins.map(filteredFavoriteCoin => {
             return (
-              <div key={filteredFavoriteCoin}>
+              <div key={filteredFavoriteCoin} className={css.item}>
                 <Button
+                  iconButton
                   iconId="favorite-filled"
                   onClick={() => removeFromFavoriteCoins(filteredFavoriteCoin)}
                 />

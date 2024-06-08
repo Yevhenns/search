@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  margin-right: auto;
+
+  .item {
+    display: flex;
+    gap: 10px;
+  }
 }
 
 .spinnerWrapper {

@@ -28,7 +28,7 @@ export const SearchCoinsHeader = ({
         handleChange={handleChange}
         deleteValue={deleteValue}
       />
-      <div>
+      <div className={css.buttonSet}>
         <Button
           iconId="favorite-filled"
           label="Favorites"
