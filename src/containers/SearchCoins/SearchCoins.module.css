@@ -1,0 +1,29 @@
+.layout {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    overflow-y: scroll;
+    border: 1px solid tomato;
+    padding: 0 10px 10px 10px;
+    border-radius: 10px;
+    scrollbar-width: none;
+  }
+
+  /* .header {
+    position: sticky;
+    top: 0;
+    background-color: #242424;
+    width: 100%;
+  } */
+
+  .spinnerWrapper {
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+}

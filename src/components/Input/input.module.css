@@ -1,0 +1,14 @@
+.layout {
+  box-sizing: border-box;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid tomato;
+  width: 100%;
+
+  input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+}
