@@ -1,5 +1,5 @@
-import { Button } from '../../components/Button';
-import { Spinner } from '../../components/Spinner';
+import { Coins, Coin } from '../../App';
+import { Button } from '../../components/Button/Button';
 import css from './SearchCoinsList.module.css';
 
 export type SearchCoinsListProps = {
@@ -26,11 +26,7 @@ export const SearchCoinsList = ({
   }
 
   if (isLoading) {
-    return (
-      <div className={css.spinnerWrapper}>
-        <Spinner />
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
   return (

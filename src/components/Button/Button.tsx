@@ -1,6 +1,5 @@
 import { HTMLProps } from 'react';
-import { Icon } from '../Icon';
-import { Icons } from '../Icon/icons';
+import { Icon, Icons } from '../Icon/Icon';
 import css from './Button.module.css';
 
 export type ButtonProps = {

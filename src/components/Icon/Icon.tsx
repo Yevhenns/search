@@ -1,4 +1,8 @@
-import { Icons } from './icons';
+export type Icons =
+  | 'favorite-filled'
+  | 'favorite-outlined'
+  | 'search'
+  | 'xmark';
 
 export type IconProps = {
   iconId: Icons;

@@ -1,7 +1,6 @@
 import { HTMLProps, SetStateAction } from 'react';
-import { Icon } from '../Icon/Icon';
-import { Icons } from '../Icon/icons';
-import { Button } from '../Button';
+import { Icon, Icons } from '../Icon/Icon';
+import { Button } from '../Button/Button';
 import css from './input.module.css';
 
 export type InputProps = {
