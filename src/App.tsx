@@ -102,9 +102,12 @@ function App() {
                   placeholder="Search..."
                 />
               </div>
-              {inputData.length > 0 && (
-                <Button onClick={deleteValue} iconId="xmark" iconButton />
-              )}
+              <Button
+                onClick={deleteValue}
+                iconId="xmark"
+                iconButton
+                dataLength={inputData.length}
+              />
             </div>
             <div className={css.buttonSet}>
               <Button

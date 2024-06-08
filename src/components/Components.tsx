@@ -7,6 +7,7 @@ export type ButtonProps = {
   iconButton?: boolean;
   iconId?: Icons;
   isActive?: boolean;
+  dataLength?: number;
 } & HTMLProps<HTMLButtonElement>;
 
 const Button = ({
@@ -17,12 +18,14 @@ const Button = ({
   iconButton = false,
   disabled = false,
   isActive = false,
+  dataLength,
   ...props
 }: ButtonProps) => {
   return (
     <button
       className={[
         css.button,
+        dataLength === 0 && css.hidden,
         iconButton ? css.iconButton : css.withText,
         isActive && css.active,
       ].join(' ')}

@@ -4,6 +4,10 @@
   padding-right: 5px;
   background-color: transparent;
 
+  &.hidden {
+    opacity: 0;
+  }
+
   &.withText {
     border-radius: 5px;
     display: flex;
