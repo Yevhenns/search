@@ -1,0 +1,11 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.spinnerWrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}

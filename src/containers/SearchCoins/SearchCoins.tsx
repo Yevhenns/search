@@ -1,22 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
+import { SetStateAction, useEffect, useRef, useState } from 'react';
 import { useGetCoins } from '../../hooks/useGetCoins';
 import { Button } from '../../components/Button';
 import { SearchCoinsHeader } from '../SearchCoinsHeader';
-import { Spinner } from '../../components/Spinner';
-import css from './SearchCoins.module.css';
 import { SearchCoinsList } from '../SearchCoinsList';
+import css from './SearchCoins.module.css';
 
 export const SearchCoins = () => {
   const [isMenuShown, setIsMenuShown] = useState(false);
   const [coins, setCoins] = useState<Coins>([]);
+  const [filteredCoins, setFilteredCoins] = useState<Coins>([]);
   const [favoriteCoins, setFavoriteCoins] = useState<Coins>([]);
+  const [filteredFavoriteCoins, setFilteredFavoriteCoins] = useState<Coins>([]);
   const [isAllCoinsShown, setIsAllCoinsShown] = useState(true);
+  const [inputData, setInputData] = useState('');
 
   const menuRef = useRef<HTMLDivElement>(null);
 
   const { getCoins, isLoading, isError } = useGetCoins();
 
   const handleSearchCoins = async () => {
+    if (isMenuShown) {
+      setIsMenuShown(false);
+      return;
+    }
     const data = await getCoins();
     setCoins(data);
     setIsMenuShown(true);
@@ -41,14 +47,32 @@ export const SearchCoins = () => {
     setIsMenuShown(true);
   };
 
-  const handler = (e: MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!menuRef.current?.contains(e.target as Node)) {
-      setIsMenuShown(false);
-    }
+  const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
+    setInputData(e.target.value);
   };
+
+  const deleteValue = () => {
+    setInputData('');
+  };
+
   useEffect(() => {
+    const newArr = coins.filter(item => item.includes(inputData.toUpperCase()));
+    setFilteredCoins(newArr);
+  }, [coins, inputData]);
+
+  useEffect(() => {
+    const newArr = favoriteCoins.filter(item =>
+      item.includes(inputData.toUpperCase())
+    );
+    setFilteredFavoriteCoins(newArr);
+  }, [favoriteCoins, inputData]);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (!menuRef.current?.contains(e.target as Node)) {
+        setIsMenuShown(false);
+      }
+    };
     document.addEventListener('click', handler);
 
     return () => {
@@ -64,22 +88,19 @@ export const SearchCoins = () => {
           <SearchCoinsHeader
             setAllCoinsList={setAllCoinsList}
             setFavoriteCoinsList={setFavoriteCoinsList}
+            inputData={inputData}
+            handleChange={handleChange}
+            deleteValue={deleteValue}
           />
-          {isError && <span>Error</span>}
-          {isLoading && (
-            <div className={css.spinnerWrapper}>
-              <Spinner />
-            </div>
-          )}
-          {!isLoading && !isError && (
-            <SearchCoinsList
-              coins={coins}
-              favoriteCoins={favoriteCoins}
-              isAllCoinsShown={isAllCoinsShown}
-              addToFavoriteCoins={addToFavoriteCoins}
-              removeFromFavoriteCoins={removeFromFavoriteCoins}
-            />
-          )}
+          <SearchCoinsList
+            filteredCoins={filteredCoins}
+            filteredFavoriteCoins={filteredFavoriteCoins}
+            isAllCoinsShown={isAllCoinsShown}
+            addToFavoriteCoins={addToFavoriteCoins}
+            removeFromFavoriteCoins={removeFromFavoriteCoins}
+            isError={isError}
+            isLoading={isLoading}
+          />
         </div>
       )}
     </div>

@@ -1,49 +1,67 @@
 import { Button } from '../../components/Button';
+import { Spinner } from '../../components/Spinner';
+import css from './SearchCoinsList.module.css';
 
 export type SearchCoinsListProps = {
-  coins: Coins;
-  favoriteCoins: Coins;
+  filteredCoins: Coins;
+  filteredFavoriteCoins: Coins;
   isAllCoinsShown: boolean;
   addToFavoriteCoins: (coin: Coin) => void;
   removeFromFavoriteCoins: (coin: Coin) => void;
+  isError: null | string;
+  isLoading: boolean;
 };
 
 export const SearchCoinsList = ({
-  coins,
-  favoriteCoins,
+  filteredCoins,
+  filteredFavoriteCoins,
   isAllCoinsShown,
   addToFavoriteCoins,
   removeFromFavoriteCoins,
+  isError,
+  isLoading,
 }: SearchCoinsListProps) => {
+  if (isError) {
+    return <span>Error</span>;
+  }
+
+  if (isLoading) {
+    return (
+      <div className={css.spinnerWrapper}>
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <div className={css.layout}>
       {isAllCoinsShown
-        ? coins.map(coin => {
+        ? filteredCoins.map(filteredCoin => {
             return (
-              <div key={coin}>
-                {favoriteCoins.includes(coin) ? (
+              <div key={filteredCoin}>
+                {filteredFavoriteCoins.includes(filteredCoin) ? (
                   <Button
                     iconId="favorite-filled"
-                    onClick={() => removeFromFavoriteCoins(coin)}
+                    onClick={() => removeFromFavoriteCoins(filteredCoin)}
                   />
                 ) : (
                   <Button
                     iconId="favorite-outlined"
-                    onClick={() => addToFavoriteCoins(coin)}
+                    onClick={() => addToFavoriteCoins(filteredCoin)}
                   />
                 )}
-                {coin}
+                {filteredCoin}
               </div>
             );
           })
-        : favoriteCoins.map(favoriteCoin => {
+        : filteredFavoriteCoins.map(filteredFavoriteCoin => {
             return (
-              <div key={favoriteCoin}>
+              <div key={filteredFavoriteCoin}>
                 <Button
                   iconId="favorite-filled"
-                  onClick={() => removeFromFavoriteCoins(favoriteCoin)}
+                  onClick={() => removeFromFavoriteCoins(filteredFavoriteCoin)}
                 />
-                {favoriteCoin}
+                {filteredFavoriteCoin}
               </div>
             );
           })}
