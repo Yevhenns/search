@@ -4,9 +4,14 @@
 
   .item {
     display: flex;
+    align-items: center;
     gap: 10px;
     border-radius: 5px;
     padding: 5px;
+
+    span {
+      width: 100%;
+    }
 
     &:hover {
       background-color: #5b5858;

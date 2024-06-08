@@ -52,7 +52,9 @@ export const SearchCoinsList = ({
                     onClick={() => addToFavoriteCoins(filteredCoin)}
                   />
                 )}
-                <span>{filteredCoin}</span>
+                <span onClick={() => alert(`Chosen coin: ${filteredCoin}`)}>
+                  {filteredCoin}
+                </span>
               </div>
             );
           })
@@ -64,7 +66,11 @@ export const SearchCoinsList = ({
                   iconId="favorite-filled"
                   onClick={() => removeFromFavoriteCoins(filteredFavoriteCoin)}
                 />
-                {filteredFavoriteCoin}
+                <span
+                  onClick={() => alert(`Chosen coin: ${filteredFavoriteCoin}`)}
+                >
+                  {filteredFavoriteCoin}
+                </span>
               </div>
             );
           })}
