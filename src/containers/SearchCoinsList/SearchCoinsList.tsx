@@ -52,7 +52,7 @@ export const SearchCoinsList = ({
                     onClick={() => addToFavoriteCoins(filteredCoin)}
                   />
                 )}
-                {filteredCoin}
+                <span>{filteredCoin}</span>
               </div>
             );
           })

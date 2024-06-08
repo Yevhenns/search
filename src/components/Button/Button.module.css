@@ -5,19 +5,20 @@
   cursor: pointer;
   background-color: transparent;
   border-radius: 5px;
+  gap: 5px;
 
   &.withText {
     height: 30px;
+
+    &:hover {
+      background-color: #5b5858;
+    }
   }
 
   &.iconButton {
     border: none;
     padding: 0;
     height: 20px;
-  }
-
-  &:hover {
-    background-color: #5b5858;
   }
 
   span {

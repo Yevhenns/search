@@ -1,12 +1,16 @@
 .layout {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  margin-right: auto;
 
   .item {
     display: flex;
     gap: 10px;
+    border-radius: 5px;
+    padding: 5px;
+
+    &:hover {
+      background-color: #5b5858;
+    }
   }
 }
 
