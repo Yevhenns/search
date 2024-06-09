@@ -82,6 +82,12 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    !isMenuShown && setCoins([]);
+    setFavoriteCoins([]);
+    setInputData('');
+  }, [isMenuShown]);
+
   return (
     <div className={css.layout}>
       <Button
