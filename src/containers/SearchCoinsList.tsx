@@ -31,6 +31,10 @@ export const SearchCoinsList = ({
 
   return (
     <div className={css.layout}>
+      {isAllCoinsShown && filteredCoins.length === 0 && <span>Empty list</span>}
+      {!isAllCoinsShown && filteredFavoriteCoins.length === 0 && (
+        <span>Empty list</span>
+      )}
       {isAllCoinsShown
         ? filteredCoins.map(filteredCoin => {
             return (

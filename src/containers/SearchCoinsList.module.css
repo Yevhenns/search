@@ -9,6 +9,7 @@
 
     &:hover {
       background-color: #5b5858;
+      cursor: pointer;
     }
 
     span {

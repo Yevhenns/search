@@ -6,6 +6,7 @@
 
   &.hidden {
     opacity: 0;
+    cursor: default;
   }
 
   &.withText {
@@ -29,6 +30,7 @@
     }
 
     &:disabled {
+      cursor: default;
       span {
         color: white;
       }
