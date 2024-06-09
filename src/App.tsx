@@ -1,4 +1,5 @@
 import { SetStateAction, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useGetCoins } from './hooks/useGetCoins';
 import { Button, Icon } from './components/Components';
 import { SearchCoinsList } from './containers/SearchCoinsList';
@@ -95,53 +96,55 @@ function App() {
         label="Search"
         isActive={isMenuShown}
       />
-      {isMenuShown && (
-        <div className={css.wrapper} ref={menuRef}>
-          <div className={css.header}>
-            <div className={css.inputLayout}>
-              <div className={css.inputWrapper}>
-                <Icon iconId="search" />
-                <input
-                  onChange={e => handleChange(e)}
-                  value={inputData}
-                  name="search"
-                  placeholder="Search..."
+      {isMenuShown &&
+        createPortal(
+          <div className={css.wrapper} ref={menuRef}>
+            <div className={css.header}>
+              <div className={css.inputLayout}>
+                <div className={css.inputWrapper}>
+                  <Icon iconId="search" />
+                  <input
+                    onChange={e => handleChange(e)}
+                    value={inputData}
+                    name="search"
+                    placeholder="Search..."
+                  />
+                </div>
+                <Button
+                  onClick={deleteValue}
+                  iconId="xmark"
+                  iconButton
+                  dataLength={inputData.length}
                 />
               </div>
-              <Button
-                onClick={deleteValue}
-                iconId="xmark"
-                iconButton
-                dataLength={inputData.length}
-              />
+              <div className={css.buttonSet}>
+                <Button
+                  iconId="favorite-filled"
+                  label="Favorites"
+                  onClick={setFavoriteCoinsList}
+                  isActive={!isAllCoinsShown}
+                  disabled={!isAllCoinsShown}
+                />
+                <Button
+                  label="All coins"
+                  onClick={setAllCoinsList}
+                  isActive={isAllCoinsShown}
+                  disabled={isAllCoinsShown}
+                />
+              </div>
             </div>
-            <div className={css.buttonSet}>
-              <Button
-                iconId="favorite-filled"
-                label="Favorites"
-                onClick={setFavoriteCoinsList}
-                isActive={!isAllCoinsShown}
-                disabled={!isAllCoinsShown}
-              />
-              <Button
-                label="All coins"
-                onClick={setAllCoinsList}
-                isActive={isAllCoinsShown}
-                disabled={isAllCoinsShown}
-              />
-            </div>
-          </div>
-          <SearchCoinsList
-            filteredCoins={filteredCoins}
-            filteredFavoriteCoins={filteredFavoriteCoins}
-            isAllCoinsShown={isAllCoinsShown}
-            addToFavoriteCoins={addToFavoriteCoins}
-            removeFromFavoriteCoins={removeFromFavoriteCoins}
-            isError={isError}
-            isLoading={isLoading}
-          />
-        </div>
-      )}
+            <SearchCoinsList
+              filteredCoins={filteredCoins}
+              filteredFavoriteCoins={filteredFavoriteCoins}
+              isAllCoinsShown={isAllCoinsShown}
+              addToFavoriteCoins={addToFavoriteCoins}
+              removeFromFavoriteCoins={removeFromFavoriteCoins}
+              isError={isError}
+              isLoading={isLoading}
+            />
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
